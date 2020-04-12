@@ -44,6 +44,5 @@ def exercise_four():
     pass
 
         
-#print(censor_phrase(email_one, "learning algorithms"))
-
-print(censor_phrase_list(email_two, proprietary_terms))
+print("FIRST EXERCISE: \n", censor_phrase(email_one, "learning algorithms"))
+print("SECOND EXERCISE: \n", censor_phrase_list(email_two, proprietary_terms))
