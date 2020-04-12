@@ -8,7 +8,7 @@ email_two = open("email_two.txt", "r").read()
 email_three = open("email_three.txt", "r").read()
 email_four = open("email_four.txt", "r").read()
 proprietary_terms = ["she", "personality matrix", "sense of self", "self-preservation", "learning algorithm", "her", "herself"]
-negative_words = ["concerned", "behind", "danger", "dangerous", "alarming", "alarmed", "out of control", "help", "unhappy", "bad", "upset", "awful", "broken", "damage", "damaging", "dismal", "distressed", "distressed", "concerning", "horrible", "horribly", "questionable"]
+negative_words = ["concerned", "behind", "danger", "dangerous", "alarming", "alarmed", "out of control", "help", "unhappy", "bad", "upset", "awful", "broken", "damage", "damaging", "dismal", "distressed", "distressing", "concerning", "horrible", "horribly", "questionable"]
 
 #This exercise required me to define a function that can censor a specific word or 
 #phrase from a body of text, and then return the text.
@@ -32,24 +32,31 @@ def censor_phrase(text, to_censor):
 
 #This exercise required me to write a function that can censor not just a specific word or 
 #phrase from a body of text, but a whole list of words and phrases, and then return the text.
-def censor_phrase_list(text, censor_list):
+def censor_phrase_list(text):
     text_clean = text
-    for word in censor_list:
+    for word in proprietary_terms:
         text_clean = censor_phrase(text_clean, word)
     return text_clean
 
 #This exercise required me to write a function that can censor any occurance of a word from the 
 #“negative words” list after any “negative” word has occurred twice, as well as censoring everything 
 #from the list from the previous step as well and use it to censor email_three. 
-#Originally I planned to have each function linked together to create an integrated series
-#of function calls; however, with this function, it became too complicated to manage, 
-#so I shifted to completing this and the following exercise internally. 
-def censor_phrase_list_and_negative_words(text, censor_list, negative_words_list):
-    pass
+def censor_phrase_list_and_negative_words(text):
+    words_to_censor = []
+    text_clean = text
+    for word in negative_words:
+        if text_clean.find(word) >= 0:
+            words_to_censor.append(word)
+    if len(words_to_censor) >= 2:
+        for word in words_to_censor:
+            text_clean = censor_phrase(text_clean, word)
+    text_clean = censor_phrase_list(text_clean)
+    return text_clean
 
 def exercise_four():
     pass
 
         
-print("FIRST EXERCISE: \n", censor_phrase(email_one, "learning algorithms"))
-print("SECOND EXERCISE: \n", censor_phrase_list(email_two, proprietary_terms))
+print("FIRST EXERCISE:\n", censor_phrase(email_one, "learning algorithms"))
+print("SECOND EXERCISE:\n", censor_phrase_list(email_two))
+print("THIRD EXERCISE:\n", censor_phrase_list_and_negative_words(email_three))
