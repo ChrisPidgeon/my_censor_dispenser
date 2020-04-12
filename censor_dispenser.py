@@ -8,8 +8,19 @@ email_two = open("email_two.txt", "r").read()
 email_three = open("email_three.txt", "r").read()
 email_four = open("email_four.txt", "r").read()
 
-def exercise_one():
-    pass
+
+#This exercise requires me to define a function 
+#that can censor a specific word or phrase from a body of text, and then return the text.
+def exercise_one(text, to_censor):
+    censor = ""
+    for x in range(0, len(to_censor)):
+        if to_censor[x] == " ":
+            censor += " "
+        else:
+            censor += "!"
+    return text.replace(to_censor, censor)
+
+print(exercise_one(email_one, "learning algorithms"))
 
 def exercise_two():
     pass
